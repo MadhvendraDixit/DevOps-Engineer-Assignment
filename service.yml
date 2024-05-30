@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: practicepod
-        image: comdevops/practice_comminent:latest
+        image: 123456789012.dkr.ecr.us-west-2.amazonaws.com/myrepository:latest
         ports:
         - containerPort: 8900
         volumeMounts:
