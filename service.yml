@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myservice
+  labels:
+    app: myservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myservice
+  template:
+    metadata:
+      labels:
+        app: myservice
+    spec:
+      containers:
+      - name: practicepod
+        image: comdevops/practice_comminent:latest
+        ports:
+        - containerPort: 8900
+        volumeMounts:
+        - name: mypvc
+          mountPath: /folder
+      imagePullSecrets:
+      - name: docker-secret
+      volumes:
+      - name: mypvc
+        persistentVolumeClaim:
+          claimName: mypvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myservice
+spec:
+  selector:
+    app: myservice
+  type: ClusterIP
+  ports:
+  - name: myservice
+    port: 80
+    targetPort: 8900
