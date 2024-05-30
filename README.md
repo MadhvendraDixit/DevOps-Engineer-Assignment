@@ -95,4 +95,22 @@ clusterAutoscaler:
 
 
 
-## Now I will pull the image on already running kubernetes cluster and run it.
+## Now I will pull the image on already running kubernetes cluster and run it along with the secret.yml, pvclaim.yml and ingress.yml.
+
+    To apply or start service-
+    kubectl apply -f service.yml
+
+    Apply secrets-
+    kubectl apply -f secrets.yml
+
+    Apply persistent volume claim for the service-
+    kubectl apply -f pvclaim.yml
+
+    Now we apply ingress files-
+    kubectl apply -f ingress.yaml
+
+    To verify ingress service-
+    kubectl get ingress myservice-ingress
+
+
+After these steps the service is deployed.
